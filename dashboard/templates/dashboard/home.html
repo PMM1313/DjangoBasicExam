@@ -1,0 +1,32 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<section class="welcome">
+    <h2>Welcome to Workshop Manager</h2>
+    <p>
+        Manage equipment, monitor stock levels, keep track of repairs,
+        and organize your workshop suppliers in one place.
+    </p>
+</section>
+
+<section class="cards">
+    <article class="card">
+        <h3>Inventory</h3>
+        <p>Manage equipment, categories, and stock movements.</p>
+        <a href="{% url 'inventory:index' %}">Open inventory &rarr;</a>
+    </article>
+
+    <article class="card">
+        <h3>Maintenance</h3>
+        <p>Record equipment problems and follow repair progress.</p>
+        <a href="{% url 'maintenance:index' %}">View repairs &rarr;</a>
+    </article>
+
+    <article class="card">
+        <h3>Suppliers</h3>
+        <p>Maintain supplier contact information and relationships.</p>
+        <a href="{% url 'suppliers:index' %}">View suppliers &rarr;</a>
+    </article>
+</section>
+{% endblock %}

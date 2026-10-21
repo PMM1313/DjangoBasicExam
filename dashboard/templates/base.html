@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Manager</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #243047;
+        }
+
+        header {
+            background: #1e293b;
+            color: white;
+            padding: 22px 8%;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            color: #cbd5e1;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 16px 8%;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        nav a {
+            color: #334155;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        main {
+            width: 84%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .welcome {
+            margin-bottom: 28px;
+        }
+
+        .welcome h2 {
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+
+        .welcome p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            padding: 24px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        .card p {
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            padding: 24px;
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                width: 90%;
+                margin-top: 28px;
+            }
+
+            header,
+            nav {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Workshop Manager</h1>
+        <p>Workshop inventory and repair management</p>
+    </header>
+
+    <nav>
+        <a href="{% url 'dashboard:home' %}">Dashboard</a>
+        <a href="{% url 'inventory:index' %}">Inventory</a>
+        <a href="{% url 'maintenance:index' %}">Maintenance</a>
+        <a href="{% url 'suppliers:index' %}">Suppliers</a>
+        <a href="{% url 'admin:index' %}">Administration</a>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Workshop Manager</p>
+    </footer>
+</body>
+</html>
