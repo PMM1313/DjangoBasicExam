@@ -5,4 +5,5 @@ app_name = "inventory"
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("categories/", views.category_list, name="categories"),
 ]

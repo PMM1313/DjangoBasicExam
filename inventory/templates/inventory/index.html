@@ -1,7 +1,77 @@
+
 {% extends "base.html" %}
 
 {% block content %}
-<h3>
-    Test Inventory
-</h3>
+<section class="welcome">
+    <h2>Equipment Inventory</h2>
+    <p>View equipment, stock quantities, categories, and suppliers.</p>
+</section>
+
+<p>
+    <a href="{% url 'inventory:categories' %}">View Categories</a>
+</p>
+
+<p>
+    {% if low_stock_only %}
+        <a href="{% url 'inventory:index' %}">Show all equipment</a>
+    {% else %}
+        <a href="{% url 'inventory:index' %}?low_stock=1">
+            Show low-stock equipment
+        </a>
+    {% endif %}
+</p>
+
+<div style="overflow-x: auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>Equipment</th>
+                <th>Serial Number</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Minimum Stock</th>
+                <th>Unit Price</th>
+                <th>Suppliers</th>
+                <th>Stock Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for item in equipment_list %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.serial_number }}</td>
+                    <td>{{ item.category.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.minimum_stock }}</td>
+                    <td>{{ item.unit_price }}</td>
+                    <td>
+                        {% for supplier in item.suppliers.all %}
+                            {{ supplier.name }}{% if not forloop.last %}, {% endif %}
+                        {% empty %}
+                            None assigned
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% if item.is_low_stock %}
+                            <strong>Low stock</strong>
+                        {% else %}
+                            In stock
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="8">
+                        {% if low_stock_only %}
+                            No low-stock equipment found.
+                        {% else %}
+                            No equipment has been added yet.
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

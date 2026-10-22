@@ -1,0 +1,45 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<section class="welcome">
+    <h2>Equipment Categories</h2>
+    <p>Browse the categories used to organize workshop equipment.</p>
+</section>
+
+<p>
+    <a href="{% url 'inventory:index' %}">Back to Equipment</a>
+</p>
+
+<div style="overflow-x: auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Equipment Count</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        {% if category.description %}
+                            {{ category.description }}
+                        {% else %}
+                            No description
+                        {% endif %}
+                    </td>
+                    <td>{{ category.equipment_count }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">No categories have been added yet.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
