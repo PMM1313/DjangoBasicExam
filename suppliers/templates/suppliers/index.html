@@ -1,7 +1,61 @@
+
 {% extends "base.html" %}
 
 {% block content %}
-<h3>
-    Test Suppliers
-</h3>
+<section class="welcome">
+    <h2>Suppliers</h2>
+    <p>Manage workshop suppliers and their contact information.</p>
+</section>
+
+<p>
+    <a href="{% url 'suppliers:supplier_create' %}">
+        Add Supplier
+    </a>
+    |
+    <a href="{% url 'inventory:index' %}">
+        Back to Equipment
+    </a>
+</p>
+
+<div style="overflow-x: auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Contact Person</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Assigned Equipment</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for supplier in suppliers %}
+                <tr>
+                    <td>{{ supplier.name }}</td>
+                    <td>{{ supplier.contact_person|default:"—" }}</td>
+                    <td>{{ supplier.email|default:"—" }}</td>
+                    <td>{{ supplier.phone|default:"—" }}</td>
+                    <td>{{ supplier.equipment_count }}</td>
+                    <td>
+                        <a href="{% url 'suppliers:supplier_update' supplier.pk %}">
+                            Edit
+                        </a>
+                        |
+                        <a href="{% url 'suppliers:supplier_delete' supplier.pk %}">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">
+                        No suppliers have been added yet.
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

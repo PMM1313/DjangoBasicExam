@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form-container">
+    <div class="form-header">
+        <h2>Delete Stock Movement</h2>
+        <p>Deleting a movement will reverse its stock adjustment.</p>
+    </div>
+
+    <p>
+        Are you sure you want to delete this movement?
+    </p>
+
+    <ul>
+        <li><strong>Equipment:</strong> {{ movement.equipment.name }}</li>
+        <li><strong>Movement:</strong> {{ movement.get_movement_type_display }}</li>
+        <li><strong>Quantity:</strong> {{ movement.quantity }}</li>
+        <li><strong>Reason:</strong> {{ movement.reason|default:"—" }}</li>
+    </ul>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-actions">
+            <button type="submit" class="button-primary">
+                Confirm Delete
+            </button>
+            <a href="{% url 'inventory:stock_movements' %}"
+               class="button-secondary">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

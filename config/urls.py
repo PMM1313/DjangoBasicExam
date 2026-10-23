@@ -31,6 +31,7 @@ urlpatterns = [
     path("inventory/", include("inventory.urls")),
     # end inventory
 
+    # maintenance
     path("maintenance/", include("maintenance.urls")),
 
     path("suppliers/", include("suppliers.urls")),

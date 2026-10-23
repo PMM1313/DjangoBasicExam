@@ -109,18 +109,151 @@
             font-size: 14px;
         }
 
+
+        /* Form layout */
+        .form-container {
+            max-width: 650px;
+            margin: 30px auto;
+            padding: 28px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+        }
+
+        .form-header {
+            margin-bottom: 24px;
+        }
+
+        .form-header h2 {
+            margin: 0 0 8px;
+            color: #1e293b;
+        }
+
+        .form-header p {
+            margin: 0;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .form-field {
+            margin-bottom: 22px;
+        }
+
+        .form-field label {
+            display: block;
+            margin-bottom: 8px;
+            color: #334155;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-field input,
+        .form-field textarea,
+        .form-field select {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 11px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            background: #ffffff;
+            color: #0f172a;
+            font: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-field textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus,
+        .form-field select:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        .form-field small {
+            display: block;
+            margin-top: 7px;
+            color: #64748b;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .form-field ul.errorlist,
+        form ul.errorlist {
+            margin: 7px 0 0;
+            padding: 0;
+            list-style: none;
+            color: #b91c1c;
+            font-size: 0.875rem;
+        }
+
+        .form-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .form-actions button,
+        .form-actions .button-primary {
+            display: inline-block;
+            padding: 11px 18px;
+            border: none;
+            border-radius: 7px;
+            background: #2563eb;
+            color: #ffffff;
+            font: inherit;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .form-actions button:hover,
+        .form-actions .button-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .form-actions .button-secondary {
+            display: inline-block;
+            padding: 10px 17px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            background: #ffffff;
+            color: #334155;
+            font: inherit;
+            text-decoration: none;
+        }
+
+        .form-actions .button-secondary:hover {
+            background: #f1f5f9;
+        }
+
         @media (max-width: 600px) {
-            main {
-                width: 90%;
-                margin-top: 28px;
+            .form-container {
+                margin: 20px auto;
+                padding: 20px;
             }
 
-            header,
-            nav {
-                padding-left: 5%;
-                padding-right: 5%;
+            .form-actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .form-actions button,
+            .form-actions a {
+                text-align: center;
             }
         }
+
     </style>
 </head>
 <body>
@@ -138,6 +271,13 @@
     </nav>
 
     <main>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p class="message">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
         {% block content %}
         {% endblock %}
     </main>

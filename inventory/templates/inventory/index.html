@@ -9,6 +9,9 @@
 
 <p>
     <a href="{% url 'inventory:categories' %}">View Categories</a>
+    <a href="{% url 'inventory:equipment_create' %}">Add Equipment</a>
+    <a href="{% url 'inventory:stock_movements' %}">Stock Movements</a>
+    <a href="{% url 'maintenance:index' %}">Repairs</a>
 </p>
 
 <p>
@@ -33,6 +36,7 @@
                 <th>Unit Price</th>
                 <th>Suppliers</th>
                 <th>Stock Status</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
@@ -59,10 +63,20 @@
                             In stock
                         {% endif %}
                     </td>
+
+                    <td>
+                        <a href="{% url 'inventory:equipment_update' item.pk %}">
+                            Edit
+                        </a>
+                        |
+                        <a href="{% url 'inventory:equipment_delete' item.pk %}">
+                            Delete
+                        </a>
+                    </td>
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="8">
+                    <td colspan="9">
                         {% if low_stock_only %}
                             No low-stock equipment found.
                         {% else %}

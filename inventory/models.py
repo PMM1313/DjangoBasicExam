@@ -14,11 +14,11 @@ class Category(models.Model):
         error_messages={
             "unique": "Category already exists.",
         },
-        help_text="Enter a unique name for this equipment category.",
+        help_text="(Must be unique)",
     )
 
     description = models.TextField(blank=True,
-        help_text="details about category.",
+        help_text="For show case/Test.",
     )
 
     class Meta:
@@ -51,7 +51,7 @@ class Equipment(models.Model):
     minimum_stock = models.PositiveIntegerField(
         default=1,
         validators=[MinValueValidator(1)],
-        help_text="Show a low-stock warning when quantity is below this value.",
+        help_text="Show a low stock warning when quantity is below this value.",
     )
 
     # eventualen use case 1 kutiq sas 100 bolcheta ?!?

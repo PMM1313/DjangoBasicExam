@@ -1,0 +1,47 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <div class="form-header">
+        <h2>Delete Repair Record</h2>
+        <p>This action will permanently remove the repair record.</p>
+    </div>
+
+    <p>
+        Are you sure you want to delete the repair record for
+        <strong>{{ repair.equipment.name }}</strong>?
+    </p>
+
+    <p>
+        <strong>Problem:</strong>
+        {{ repair.problem_description|truncatewords:20 }}
+    </p>
+
+    <p>
+        <strong>Repair cost:</strong>
+        {{ repair.repair_cost|floatformat:2 }}
+    </p>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <div class="form-actions">
+            <button type="submit" class="button-primary">
+                Confirm Delete
+            </button>
+
+            <a href="{% url 'maintenance:index' %}"
+               class="button-secondary">
+                Cancel
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

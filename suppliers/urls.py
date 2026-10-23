@@ -5,4 +5,7 @@ app_name = "suppliers"
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("add/", views.supplier_create, name="supplier_create"),
+    path("<int:pk>/edit/", views.supplier_update, name="supplier_update"),
+    path("<int:pk>/delete/", views.supplier_delete, name="supplier_delete"),
 ]
