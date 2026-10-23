@@ -2,66 +2,104 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+{% load static %}
 <section class="welcome">
     <h2>Workshop Dashboard</h2>
     <p>Overview of equipment, stock, suppliers, and repairs.</p>
 </section>
 
 <div class="dashboard-cards">
-    <div class="dashboard-card">
+
+    <article class="dashboard-card">
+        <img
+            src="{% static 'images/dashboard/equipment-types.png' %}"
+            alt=""
+            class="dashboard-card-image"
+        >
         <h3>Equipment Types</h3>
         <p class="dashboard-number">{{ equipment_count }}</p>
         <a href="{% url 'inventory:index' %}">View equipment</a>
-    </div>
+    </article>
 
-    <div class="dashboard-card">
+    <article class="dashboard-card">
+        <img
+            src="{% static 'images/dashboard/total-stock-quantity.png' %}"
+            alt=""
+            class="dashboard-card-image"
+        >
         <h3>Total Stock Quantity</h3>
         <p class="dashboard-number">{{ stock_quantity }}</p>
         <a href="{% url 'inventory:index' %}">View stock</a>
-    </div>
+    </article>
 
-    <div class="dashboard-card">
+    <article class="dashboard-card">
+        <img
+            src="{% static 'images/dashboard/categories.png' %}"
+            alt=""
+            class="dashboard-card-image"
+        >
         <h3>Categories</h3>
         <p class="dashboard-number">{{ category_count }}</p>
         <a href="{% url 'inventory:categories' %}">View categories</a>
-    </div>
+    </article>
 
-    <div class="dashboard-card">
+    <article class="dashboard-card">
+        <img
+            src="{% static 'images/dashboard/suppliers.png' %}"
+            alt=""
+            class="dashboard-card-image"
+        >
         <h3>Suppliers</h3>
         <p class="dashboard-number">{{ supplier_count }}</p>
         <a href="{% url 'suppliers:index' %}">View suppliers</a>
-    </div>
+    </article>
 
-    <div class="dashboard-card">
+    <article class="dashboard-card">
+        <img
+            src="{% static 'images/dashboard/low-stock-equipment.png' %}"
+            alt=""
+            class="dashboard-card-image"
+        >
         <h3>Low-Stock Equipment</h3>
         <p class="dashboard-number">{{ low_stock_count }}</p>
         <a href="{% url 'inventory:index' %}?low_stock=1">
             Review low stock
         </a>
-    </div>
+    </article>
 
-    <div class="dashboard-card">
+    <article class="dashboard-card">
+        <img
+            src="{% static 'images/dashboard/open-repairs.png' %}"
+            alt=""
+            class="dashboard-card-image"
+        >
         <h3>Open Repairs</h3>
         <p class="dashboard-number">{{ open_repairs_count }}</p>
         <a href="{% url 'maintenance:index' %}">View repairs</a>
-    </div>
+    </article>
 
-    <div class="dashboard-card">
+    <article class="dashboard-card">
+        <img
+            src="{% static 'images/dashboard/maintenance-costs.png' %}"
+            alt=""
+            class="dashboard-card-image"
+        >
         <h3>Total Maintenance Costs</h3>
         <p class="dashboard-number">
             {{ total_maintenance_cost|floatformat:2 }}
         </p>
-        <a href="{% url 'maintenance:index' %}">View repair records</a>
-    </div>
+        <a href="{% url 'maintenance:index' %}">
+            View repair records
+        </a>
+    </article>
+
 </div>
 
-<section class="welcome">
+<section class="low-stock">
     <h2>Low-Stock Alerts</h2>
     <p>Equipment whose current quantity is below its minimum stock level.</p>
-</section>
 
-<div style="overflow-x: auto;">
+    <div style="overflow-x: auto;">
     <table>
         <thead>
             <tr>
@@ -96,4 +134,5 @@
     </table>
 </div>
 
+</section>
 {% endblock %}
