@@ -7,13 +7,21 @@
     <p>Browse the categories used to organize workshop equipment.</p>
 </section>
 
-<p>
-    <a href="{% url 'inventory:category_create' %}">Add Category</a>
-    |
-    <a href="{% url 'inventory:index' %}">Back to Equipment</a>
-</p>
+<div class="inventory-toolbar">
+    <div class="inventory-actions">
+        <a class="action-button action-button-primary"
+           href="{% url 'inventory:category_create' %}">
+            + Add Category
+        </a>
 
-<div style="overflow-x: auto;">
+        <a class="action-button"
+           href="{% url 'inventory:index' %}">
+            ← Back to Equipment
+        </a>
+    </div>
+</div>
+
+<div class="table-container" style="overflow-x: auto;">
     <table>
         <thead>
             <tr>

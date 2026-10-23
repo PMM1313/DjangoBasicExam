@@ -7,24 +7,41 @@
     <p>View equipment, stock quantities, categories, and suppliers.</p>
 </section>
 
-<p>
-    <a href="{% url 'inventory:categories' %}">View Categories</a>
-    <a href="{% url 'inventory:equipment_create' %}">Add Equipment</a>
-    <a href="{% url 'inventory:stock_movements' %}">Stock Movements</a>
-    <a href="{% url 'maintenance:index' %}">Repairs</a>
-</p>
-
-<p>
-    {% if low_stock_only %}
-        <a href="{% url 'inventory:index' %}">Show all equipment</a>
-    {% else %}
-        <a href="{% url 'inventory:index' %}?low_stock=1">
-            Show low-stock equipment
+<div class="inventory-toolbar">
+    <div class="inventory-actions">
+        <a class="action-button" href="{% url 'inventory:categories' %}">
+            View Categories
         </a>
-    {% endif %}
-</p>
 
-<div style="overflow-x: auto;">
+        <a class="action-button action-button-primary" href="{% url 'inventory:equipment_create' %}">
+            + Add Equipment
+        </a>
+
+        <a class="action-button" href="{% url 'inventory:stock_movements' %}">
+            Stock Movements
+        </a>
+
+        <a class="action-button" href="{% url 'maintenance:index' %}">
+            Repairs
+        </a>
+    </div>
+
+    <div class="inventory-filters">
+        {% if low_stock_only %}
+            <a class="action-button action-button-filter active-filter"
+               href="{% url 'inventory:index' %}">
+                ✕ Show All Equipment
+            </a>
+        {% else %}
+            <a class="action-button action-button-filter"
+               href="{% url 'inventory:index' %}?low_stock=1">
+                ⚠ Show Low-Stock Equipment
+            </a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="table-container" style="overflow-x: auto;">
     <table>
         <thead>
             <tr>

@@ -2,31 +2,98 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <section class="welcome">
-    <h2>Welcome to Workshop Manager</h2>
-    <p>
-        Manage equipment, monitor stock levels, keep track of repairs,
-        and organize your workshop suppliers in one place.
-    </p>
+    <h2>Workshop Dashboard</h2>
+    <p>Overview of equipment, stock, suppliers, and repairs.</p>
 </section>
 
-<section class="cards">
-    <article class="card">
-        <h3>Inventory</h3>
-        <p>Manage equipment, categories, and stock movements.</p>
-        <a href="{% url 'inventory:index' %}">Open inventory &rarr;</a>
-    </article>
+<div class="dashboard-cards">
+    <div class="dashboard-card">
+        <h3>Equipment Types</h3>
+        <p class="dashboard-number">{{ equipment_count }}</p>
+        <a href="{% url 'inventory:index' %}">View equipment</a>
+    </div>
 
-    <article class="card">
-        <h3>Maintenance</h3>
-        <p>Record equipment problems and follow repair progress.</p>
-        <a href="{% url 'maintenance:index' %}">View repairs &rarr;</a>
-    </article>
+    <div class="dashboard-card">
+        <h3>Total Stock Quantity</h3>
+        <p class="dashboard-number">{{ stock_quantity }}</p>
+        <a href="{% url 'inventory:index' %}">View stock</a>
+    </div>
 
-    <article class="card">
+    <div class="dashboard-card">
+        <h3>Categories</h3>
+        <p class="dashboard-number">{{ category_count }}</p>
+        <a href="{% url 'inventory:categories' %}">View categories</a>
+    </div>
+
+    <div class="dashboard-card">
         <h3>Suppliers</h3>
-        <p>Maintain supplier contact information and relationships.</p>
-        <a href="{% url 'suppliers:index' %}">View suppliers &rarr;</a>
-    </article>
+        <p class="dashboard-number">{{ supplier_count }}</p>
+        <a href="{% url 'suppliers:index' %}">View suppliers</a>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Low-Stock Equipment</h3>
+        <p class="dashboard-number">{{ low_stock_count }}</p>
+        <a href="{% url 'inventory:index' %}?low_stock=1">
+            Review low stock
+        </a>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Open Repairs</h3>
+        <p class="dashboard-number">{{ open_repairs_count }}</p>
+        <a href="{% url 'maintenance:index' %}">View repairs</a>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Total Maintenance Costs</h3>
+        <p class="dashboard-number">
+            {{ total_maintenance_cost|floatformat:2 }}
+        </p>
+        <a href="{% url 'maintenance:index' %}">View repair records</a>
+    </div>
+</div>
+
+<section class="welcome">
+    <h2>Low-Stock Alerts</h2>
+    <p>Equipment whose current quantity is below its minimum stock level.</p>
 </section>
+
+<div style="overflow-x: auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>Equipment</th>
+                <th>Category</th>
+                <th>Current Quantity</th>
+                <th>Minimum Stock</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in low_stock_items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.category.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.minimum_stock }}</td>
+                    <td>
+                        <a href="{% url 'inventory:equipment_update' item.pk %}">
+                            Edit
+                        </a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">
+                        No low-stock equipment at the moment.
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 {% endblock %}

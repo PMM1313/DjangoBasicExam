@@ -8,17 +8,21 @@
     <p>Track reported problems, repair progress, and maintenance costs.</p>
 </section>
 
-<p>
-    <a href="{% url 'maintenance:repair_create' %}">
-        Report Equipment Problem
-    </a>
-    |
-    <a href="{% url 'inventory:index' %}">
-        Back to Equipment
-    </a>
-</p>
+<div class="inventory-toolbar">
+    <div class="inventory-actions">
+        <a class="action-button action-button-primary"
+           href="{% url 'maintenance:repair_create' %}">
+            + Report Equipment Problem
+        </a>
 
-<div style="overflow-x: auto;">
+        <a class="action-button"
+           href="{% url 'inventory:index' %}">
+            ← Back to Equipment
+        </a>
+    </div>
+</div>
+
+<div class="table-container" style="overflow-x: auto;">
     <table>
         <thead>
             <tr>
