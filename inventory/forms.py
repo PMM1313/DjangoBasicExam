@@ -18,6 +18,14 @@ class CategoryForm(forms.ModelForm):
         }
 
 class EquipmentForm(forms.ModelForm):
+
+
+    # serial number not editable when editing equipment
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance.pk:
+            self.fields["serial_number"].disabled = True
+
     class Meta:
         model = Equipment
         fields = [
