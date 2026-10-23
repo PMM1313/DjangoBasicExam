@@ -722,3 +722,33 @@ tbody td strong {
         flex: 1 1 auto;
     }
 }
+
+/* Custom 404 */
+
+/*.error-page {*/
+/*    max-width: 600px;*/
+/*    margin: 60px auto;*/
+/*    padding: 48px 24px;*/
+/*    text-align: center;*/
+/*    background: #f8fafc;*/
+/*    border: 1px solid #e2e8f0;*/
+/*    border-radius: 16px;*/
+/*}*/
+
+/*.error-code {*/
+/*    margin: 0;*/
+/*    color: #2563eb;*/
+/*    font-size: 5rem;*/
+/*    font-weight: 800;*/
+/*    line-height: 1;*/
+/*}*/
+
+/*.error-page h1 {*/
+/*    margin: 16px 0 12px;*/
+/*    color: #0f172a;*/
+/*}*/
+
+/*.error-page p:not(.error-code) {*/
+/*    margin-bottom: 24px;*/
+/*    color: #64748b;*/
+/*}*/

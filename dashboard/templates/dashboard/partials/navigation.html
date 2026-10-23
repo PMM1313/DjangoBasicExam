@@ -1,0 +1,31 @@
+<nav class="main-nav">
+        <a
+            class="nav-link {% if request.resolver_match.namespace == 'dashboard' %}active{% endif %}"
+            href="{% url 'dashboard:home' %}">
+            Dashboard
+        </a>
+
+        <a
+            class="nav-link {% if request.resolver_match.namespace == 'inventory' %}active{% endif %}"
+            href="{% url 'inventory:index' %}">
+            Inventory
+        </a>
+
+        <a
+            class="nav-link {% if request.resolver_match.namespace == 'maintenance' %}active{% endif %}"
+            href="{% url 'maintenance:index' %}">
+            Maintenance
+        </a>
+
+        <a
+            class="nav-link {% if request.resolver_match.namespace == 'suppliers' %}active{% endif %}"
+            href="{% url 'suppliers:index' %}">
+            Suppliers
+        </a>
+
+        <a
+            class="nav-link nav-link-admin {% if request.resolver_match.namespace == 'admin' %}active{% endif %}"
+            href="{% url 'admin:index' %}">
+            Administration
+        </a>
+    </nav>

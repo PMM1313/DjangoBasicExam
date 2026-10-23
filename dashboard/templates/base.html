@@ -17,37 +17,7 @@
         <p>Workshop inventory and repair management</p>
     </header>
 
-    <nav class="main-nav">
-        <a
-            class="nav-link {% if request.resolver_match.namespace == 'dashboard' %}active{% endif %}"
-            href="{% url 'dashboard:home' %}">
-            Dashboard
-        </a>
-
-        <a
-            class="nav-link {% if request.resolver_match.namespace == 'inventory' %}active{% endif %}"
-            href="{% url 'inventory:index' %}">
-            Inventory
-        </a>
-
-        <a
-            class="nav-link {% if request.resolver_match.namespace == 'maintenance' %}active{% endif %}"
-            href="{% url 'maintenance:index' %}">
-            Maintenance
-        </a>
-
-        <a
-            class="nav-link {% if request.resolver_match.namespace == 'suppliers' %}active{% endif %}"
-            href="{% url 'suppliers:index' %}">
-            Suppliers
-        </a>
-
-        <a
-            class="nav-link nav-link-admin {% if request.resolver_match.namespace == 'admin' %}active{% endif %}"
-            href="{% url 'admin:index' %}">
-            Administration
-        </a>
-    </nav>
+    {% include "dashboard/partials/navigation.html" %}
 
     <main>
 
@@ -61,19 +31,8 @@
         {% endblock %}
     </main>
 
-    <footer class="site-footer">
-        <img
-            src="{% static 'images/footer.jpg' %}"
-            alt=""
-            class="footer-image"
-        >
+    {% include "dashboard/partials/footer.html" %}
 
-        <div class="footer-content">
-            <strong>Workshop Inventory &amp; Repair Log</strong>
-            <p>Keeping equipment organized and ready for work.</p>
-            <small>&copy; {% now "Y" %} Workshop Management</small>
-        </div>
-    </footer>
 </body>
 
 </html>
