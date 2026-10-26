@@ -1,5 +1,7 @@
-
 {% extends "base.html" %}
+
+{% load workshop_filters %}
+
 
 {% block content %}
 <section class="welcome">
@@ -63,7 +65,7 @@
                     <td>{{ item.name }}</td>
                     <td>{{ item.serial_number }}</td>
                     <td>{{ item.category.name }}</td>
-                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.quantity }} — {{ item|stock_status }}</td>
                     <td>{{ item.minimum_stock }}</td>
                     <td>{{ item.unit_price }}</td>
                     <td>
