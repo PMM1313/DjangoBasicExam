@@ -13,8 +13,15 @@
 
 <body>
     <header>
-        <h1>Workshop Manager</h1>
-        <p>Workshop inventory and repair management</p>
+        <div class="header-title" style="display:grid; gap: 1rem">
+            <h1>Workshop Manager</h1>
+
+            <p>Workshop inventory and repair management</p>
+        </div>
+
+        <p class="local-clock">
+            <time id="local-time" data-timezone="Europe/Sofia">Loading...</time>
+        </p>
     </header>
 
     {% include "dashboard/partials/navigation.html" %}
@@ -32,6 +39,9 @@
     </main>
 
     {% include "dashboard/partials/footer.html" %}
+
+
+    <script src="{% static 'js/local-clock.js' %}"></script>
 
 </body>
 
