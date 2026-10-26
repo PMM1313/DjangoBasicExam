@@ -9,6 +9,30 @@ body {
     color: #243047;
 }
 
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-title h1,
+.header-title p {
+    margin-top: 0;
+}
+
+.header-title p {
+    margin-bottom: 0;
+}
+
+.local-clock {
+    margin: 0;
+    text-align: right;
+    white-space: nowrap;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
 header {
     background: #1e293b;
     color: white;
@@ -752,3 +776,20 @@ tbody td strong {
 /*    margin-bottom: 24px;*/
 /*    color: #64748b;*/
 /*}*/
+
+
+/* Clock */
+
+.local-clock {
+    margin: 0;
+    text-align: right;
+    white-space: nowrap;
+    font-size: 1.15rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.local-clock time {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
